@@ -1,0 +1,42 @@
+{
+	"init": {
+		"prefix": "init",
+		"body": [
+			"procedure init;",
+			"begin",
+			"\tassign(f,'$TM_FILENAME_BASE.INP'); reset(f);",
+			"\tassign(g,'$TM_FILENAME_BASE.OUT'); rewrite(g);",
+			"\t",
+			"\t$1",
+			"\tclose(f)",
+			"end;"
+		]
+	},
+	"GhiFile": {
+		"prefix": "GhiFile",
+		"body": [
+			"begin",
+			"\tassign(g,'$TM_FILENAME_BASE.OUT'); rewrite(g);",
+			"\t",
+			"\t$1",
+			"\tclose(g)",
+			"end."
+		]
+	},
+	"begin..end;": {
+		"prefix": "begin..end;",
+		"body": [
+			"begin",
+			"\t$1",
+			"end;"
+		]
+	},
+	"begin..end.": {
+		"prefix": "begin..end.",
+		"body": [
+			"begin",
+			"\t$1",
+			"end."
+		]
+	}
+}
