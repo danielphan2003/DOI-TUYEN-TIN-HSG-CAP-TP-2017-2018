@@ -1,0 +1,38 @@
+{
+	"version": "0.1.0",
+	"isShellCommand": true,
+	"tasks": [
+		{
+			"taskName": "Compile",
+			"windows": {
+				"command": "fpc"
+			},
+			"linux": {
+				"command": "fpc"
+			},
+			"args": [ "${file}" ],
+			"showOutput": "always",
+			"isBuildCommand": true,
+			"problemMatcher": {
+				"owner": "external",
+				"pattern": {
+					"regexp": "^(.*\\.(p|pp|pas))\\((\\d+)\\,(\\d+)\\)\\s(Fatal|Error|Warning|Note):\\s(?!There were \\d+ errors compiling module, stopping)(.*)$",
+					"file": 1,
+					"line": 3,
+					"column": 4,
+					"message": 6,
+					"loop": true
+				}
+			}
+		},
+		{
+			"taskName": "Run",
+			"windows": {
+				"command": "${workspaceRoot}\\${fileBasenameNoExtension}"
+			},
+			"isTestCommand": true,
+			"showOutput": "silent",
+			"isShellCommand": true
+		}
+	]
+}
