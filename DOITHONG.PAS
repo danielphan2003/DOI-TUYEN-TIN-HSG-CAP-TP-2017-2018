@@ -30,12 +30,30 @@ begin
 end;
 
 procedure doithong(x,y : integer);
+var i, count, tmp : integer;
 begin
-    a[x,y]:=0;
-    if a[x,y+1]=1 then doithong(x,y+1);
-    if a[x+1,y]=1 then doithong(x+1,y);
-    if a[x,y-1]=1 then doithong(x,y-1);
-    if a[x-1,y]=1 then doithong(x-1,y);
+    if ((a[x,y] = 1) and (a[x+1,y] = 1))
+    and ((a[x+1,y-1] = 0) and (a[x+1,y+1] = 0))
+    then
+        begin
+            inc(dem);
+            exit
+        end;
+    
+    tmp:=y;
+    count:=1;
+    while (a[x+1,tmp] = 1)
+    and ((a[x+1,tmp-1] <> 0) and (a[x+1,tmp+1] <> 0))
+    do
+        begin
+            inc(x); dec(y);
+            inc(count);
+            for i:=y to y+count do begin
+                if a[x,i] <> 1 then exit
+                else a[x,i]:=0; write(g,a[x,i],' ') end;
+            writeln(g)
+        end;
+    inc(dem)
 end;
 
 procedure XuLy;
@@ -43,11 +61,7 @@ begin
     dem:=0;
     for i:=1 to M do
         for j:=1 to N do 
-            if a[i,j] = 1 then 
-                begin
-                    inc(dem);
-                    doithong(i,j)
-                end;
+            if a[i,j] = 1 then doithong(i,j);
     writeln(g,dem)
 end;
 
